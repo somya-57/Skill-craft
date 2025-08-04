@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uamore - Luxury Perfumes & Fragrances</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <h1>Uamore</h1>
+                <span class="tagline">Elegance in Every Drop</span>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#shop" class="nav-link">Shop</a>
+                <a href="#collections" class="nav-link">Collections</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="user-btn" id="userBtn">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="admin-btn" id="adminBtn" style="display: none;">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-container">
+            <input type="text" placeholder="Search for fragrances..." id="searchInput">
+            <button class="search-close" id="searchClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" id="cartClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h2>Timeless Fragrances</h2>
+                <p>Discover the art of luxury perfumery. Each scent tells a story, every drop creates memories.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('shop')">Shop Collection</button>
+                    <button class="btn-secondary" onclick="scrollToSection('collections')">Explore Stories</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="perfume-bottle"></div>
+            </div>
+        </section>
+
+        <!-- Featured Categories -->
+        <section class="categories">
+            <div class="container">
+                <h3>Shop by Category</h3>
+                <div class="category-grid">
+                    <div class="category-card" onclick="filterProducts('women')">
+                        <div class="category-icon">👩</div>
+                        <h4>Women's Fragrances</h4>
+                        <p>Elegant & sophisticated</p>
+                    </div>
+                    <div class="category-card" onclick="filterProducts('men')">
+                        <div class="category-icon">👨</div>
+                        <h4>Men's Fragrances</h4>
+                        <p>Bold & distinctive</p>
+                    </div>
+                    <div class="category-card" onclick="filterProducts('unisex')">
+                        <div class="category-icon">🌟</div>
+                        <h4>Unisex Collection</h4>
+                        <p>Gender-fluid elegance</p>
+                    </div>
+                    <div class="category-card" onclick="filterProducts('gift')">
+                        <div class="category-icon">🎁</div>
+                        <h4>Gift Sets</h4>
+                        <p>Perfect for any occasion</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products" id="shop">
+            <div class="container">
+                <div class="section-header">
+                    <h3>Our Collection</h3>
+                    <div class="filters">
+                        <select id="sortSelect" onchange="sortProducts()">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name: A to Z</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="product-grid" id="productGrid">
+                    <!-- Products will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Collections Section -->
+        <section class="collections" id="collections">
+            <div class="container">
+                <h3>Signature Collections</h3>
+                <div class="collection-grid">
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <div class="collection-overlay">
+                                <h4>Amber Collection</h4>
+                                <p>Warm, sensual, and mysterious</p>
+                                <button class="btn-outline">Explore</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <div class="collection-overlay">
+                                <h4>Floral Symphony</h4>
+                                <p>Delicate blooms and fresh petals</p>
+                                <button class="btn-outline">Explore</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <div class="collection-overlay">
+                                <h4>Ocean Breeze</h4>
+                                <p>Crisp, clean, and refreshing</p>
+                                <button class="btn-outline">Explore</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>The Uamore Story</h3>
+                        <p>Founded with a passion for creating extraordinary fragrances, Uamore represents the perfect blend of tradition and innovation. Our master perfumers craft each scent using the finest ingredients from around the world.</p>
+                        <p>Every Uamore fragrance is more than just a scent—it's an experience, a memory, a moment of pure luxury that becomes part of your story.</p>
+                        <button class="btn-primary">Learn More</button>
+                    </div>
+                    <div class="about-image">
+                        <div class="perfume-ingredients"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h3>Stay Connected</h3>
+                    <p>Be the first to know about new collections, exclusive offers, and fragrance stories.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Uamore</h4>
+                    <p>Elegance in Every Drop</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h5>Shop</h5>
+                    <ul>
+                        <li><a href="#">Women's Fragrances</a></li>
+                        <li><a href="#">Men's Fragrances</a></li>
+                        <li><a href="#">Unisex Collection</a></li>
+                        <li><a href="#">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Uamore. All rights reserved. | Developed by <strong>Somya Sharma</strong></p>
+                <div class="developer-links">
+                    <a href="https://www.linkedin.com/in/somya-sharma-b6a95331b/" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/somya-57" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- User Authentication Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h3 id="authTitle">Sign In</h3>
+                <button class="auth-close" id="authClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="auth-content">
+                <!-- Sign In Form -->
+                <form id="signInForm" class="auth-form">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit" class="btn-primary">Sign In</button>
+                    <p class="auth-switch">Don't have an account? <a href="#" id="switchToSignUp">Sign Up</a></p>
+                </form>
+                
+                <!-- Sign Up Form -->
+                <form id="signUpForm" class="auth-form" style="display: none;">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <input type="password" placeholder="Confirm Password" required>
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                    <p class="auth-switch">Already have an account? <a href="#" id="switchToSignIn">Sign In</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Profile Modal -->
+    <div class="profile-modal" id="profileModal">
+        <div class="profile-container">
+            <div class="profile-header">
+                <h3>My Profile</h3>
+                <button class="profile-close" id="profileClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="profile-content">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h4 id="userName">User Name</h4>
+                    <p id="userEmail">user@email.com</p>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn-secondary" onclick="showOrderHistory()">Order History</button>
+                    <button class="btn-secondary" onclick="showWishlist()">Wishlist</button>
+                    <button class="btn-outline" onclick="signOut()">Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-container">
+            <div class="checkout-header">
+                <h3>Checkout</h3>
+                <button class="checkout-close" id="checkoutClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="checkout-content">
+                <div class="checkout-form">
+                    <h4>Shipping Information</h4>
+                    <form id="checkoutForm">
+                        <div class="form-row">
+                            <input type="text" placeholder="First Name" required>
+                            <input type="text" placeholder="Last Name" required>
+                        </div>
+                        <input type="email" placeholder="Email" required>
+                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="text" placeholder="Address" required>
+                        <div class="form-row">
+                            <input type="text" placeholder="City" required>
+                            <input type="text" placeholder="State" required>
+                        </div>
+                        <input type="text" placeholder="PIN Code" required>
+                        
+                        <h4>Payment Information</h4>
+                        <div class="payment-methods">
+                            <label class="payment-method">
+                                <input type="radio" name="payment" value="card" checked>
+                                <span class="payment-label">
+                                    <i class="fas fa-credit-card"></i>
+                                    Credit/Debit Card
+                                </span>
+                            </label>
+                            <label class="payment-method">
+                                <input type="radio" name="payment" value="upi">
+                                <span class="payment-label">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    UPI
+                                </span>
+                            </label>
+                            <label class="payment-method">
+                                <input type="radio" name="payment" value="cod">
+                                <span class="payment-label">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    Cash on Delivery
+                                </span>
+                            </label>
+                        </div>
+                        
+                        <div id="cardDetails" class="payment-details">
+                            <input type="text" placeholder="Card Number" maxlength="16">
+                            <div class="form-row">
+                                <input type="text" placeholder="MM/YY" maxlength="5">
+                                <input type="text" placeholder="CVV" maxlength="3">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Place Order</button>
+                    </form>
+                </div>
+                <div class="checkout-summary">
+                    <h4>Order Summary</h4>
+                    <div id="checkoutItems">
+                        <!-- Order items will be displayed here -->
+                    </div>
+                    <div class="checkout-total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">₹0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h3>Admin Dashboard</h3>
+                <button class="admin-close" id="adminClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="admin-content">
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="products">Products</button>
+                    <button class="admin-tab" data-tab="orders">Orders</button>
+                    <button class="admin-tab" data-tab="users">Users</button>
+                    <button class="admin-tab" data-tab="analytics">Analytics</button>
+                </div>
+                
+                <!-- Products Tab -->
+                <div class="admin-tab-content active" id="productsTab">
+                    <div class="admin-actions">
+                        <button class="btn-primary" onclick="addNewProduct()">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                    </div>
+                    <div class="admin-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminProductsTable">
+                                <!-- Products will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Orders Tab -->
+                <div class="admin-tab-content" id="ordersTab">
+                    <div class="admin-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Products</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminOrdersTable">
+                                <!-- Orders will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Users Tab -->
+                <div class="admin-tab-content" id="usersTab">
+                    <div class="admin-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Orders</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminUsersTable">
+                                <!-- Users will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Analytics Tab -->
+                <div class="admin-tab-content" id="analyticsTab">
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h4>Total Sales</h4>
+                            <p class="analytics-number">₹2,45,670</p>
+                            <span class="analytics-change positive">+12.5%</span>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>Orders</h4>
+                            <p class="analytics-number">1,234</p>
+                            <span class="analytics-change positive">+8.3%</span>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>Customers</h4>
+                            <p class="analytics-number">567</p>
+                            <span class="analytics-change positive">+15.2%</span>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>Products</h4>
+                            <p class="analytics-number">24</p>
+                            <span class="analytics-change neutral">0%</span>
+                        </div>
+                    </div>
+                    <div class="analytics-chart">
+                        <h4>Sales Overview</h4>
+                        <div class="chart-placeholder">
+                            <div class="chart-bar" style="height: 60%"></div>
+                            <div class="chart-bar" style="height: 80%"></div>
+                            <div class="chart-bar" style="height: 45%"></div>
+                            <div class="chart-bar" style="height: 90%"></div>
+                            <div class="chart-bar" style="height: 70%"></div>
+                            <div class="chart-bar" style="height: 85%"></div>
+                            <div class="chart-bar" style="height: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
